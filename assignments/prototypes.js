@@ -35,6 +35,7 @@ GameObject.prototype.destroy = function () {
 
 function CharacterStats(stats) {
   this.healthPoints = stats.healthPoints;
+  this.attackPoints = stats.attackPoints;
   // Inherits GameObjects args
   GameObject.call(this, stats);
 }
@@ -160,7 +161,13 @@ Hero.prototype = Object.create(Humanoid.prototype);
 
 // Fight Method
 Hero.prototype.fight = function(who) {
-  return who.healthPoints -= 10 , `${this.name} just attacked ${villian.name} for 10hp!`;
+  while(who.healthPoints > 0) {
+    if(who.healthPoints === 0) {
+     console.log(who.destroy());
+    } else {
+    console.log(who.healthPoints -= `${this.attackPoints}` , `${this.name} just attacked ${who.name} with ${this.weapons[0]} for ${this.attackPoints}`);
+    }
+  }
 }
 // VILLIAN CONSTRUCT
 function Villian(args) {
@@ -179,10 +186,11 @@ const hero = new Hero({
     height: 4,
   },
   healthPoints: 100,
+  attackPoints: 10,
   name: 'spiderman',
   team: 'New York',
   weapons: [
-    'Web',
+    'Webs',
     'Senses',
   ],
   language: 'Spidey',
@@ -205,7 +213,6 @@ const villian = new Villian({
   language: 'Octo',
 });
 
-console.log(hero.fight(villian));
 console.log(hero.fight(villian));
 console.log(hero);
 console.log(villian);
