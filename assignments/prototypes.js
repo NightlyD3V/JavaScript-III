@@ -147,3 +147,65 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+// Constructors 
+
+function Hero(args) {
+  // Inherit args
+  Humanoid.call(this, args);
+}
+
+// Inherit from Humanoid 
+Hero.prototype = Object.create(Humanoid.prototype);
+
+// Fight Method
+Hero.prototype.fight = function(who) {
+  return who.healthPoints -= 10 , `${this.name} just attacked ${villian.name} for 10hp!`;
+}
+// VILLIAN CONSTRUCT
+function Villian(args) {
+  // Inherit args
+  Humanoid.call(this, args);
+}
+//Inherit from Humanoid 
+Villian.prototype = Object.create(Humanoid.prototype);
+
+// Objects
+const hero = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 100,
+  name: 'spiderman',
+  team: 'New York',
+  weapons: [
+    'Web',
+    'Senses',
+  ],
+  language: 'Spidey',
+});
+
+const villian = new Villian({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 100,
+  name: 'Dr.Oct',
+  team: 'New York',
+  weapons: [
+    'Claw',
+    'Reactor',
+  ],
+  language: 'Octo',
+});
+
+console.log(hero.fight(villian));
+console.log(hero.fight(villian));
+console.log(hero);
+console.log(villian);
