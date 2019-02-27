@@ -161,9 +161,10 @@ Hero.prototype = Object.create(Humanoid.prototype);
 
 // Fight Method
 Hero.prototype.fight = function(who) {
-  while(who.healthPoints > 0) {
+  while(who.healthPoints != -1) {
     if(who.healthPoints === 0) {
      console.log(who.destroy());
+     break;
     } else {
     console.log(who.healthPoints -= `${this.attackPoints}` , `${this.name} just attacked ${who.name} with ${this.weapons[0]} for ${this.attackPoints}`);
     }
@@ -213,6 +214,6 @@ const villian = new Villian({
   language: 'Octo',
 });
 
-console.log(hero.fight(villian));
+hero.fight(villian);
 console.log(hero);
 console.log(villian);
